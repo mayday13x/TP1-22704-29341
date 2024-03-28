@@ -22,12 +22,11 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    void FixedUpdate()
+    void Update()
     {
 
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);
 
-    
 
         if (Input.GetKeyDown(KeyCode.D) && Lane3 == false && Lane2 == false && Lane1 == true)
         {
@@ -38,6 +37,7 @@ public class PlayerScript : MonoBehaviour
             Vector3 cpos = Player.transform.position;
             cpos.x = -13.5f;
             Player.position = cpos;
+            
             
         }
         else if (Input.GetKeyDown(KeyCode.A) && Lane2 == true)

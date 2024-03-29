@@ -15,7 +15,7 @@ public class PlayerScript : MonoBehaviour
     bool Lane3 = false;
 
     public Transform Player;
-
+    //public Animator animator;
 
     void Start()
     {
@@ -34,10 +34,10 @@ public class PlayerScript : MonoBehaviour
             Lane1 = false;
             Lane3 = false;
 
+            //animator.SetTrigger("Jump");
             Vector3 cpos = Player.transform.position;
             cpos.x = -13.5f;
-            Player.position = cpos;
-            
+            Player.transform.position = cpos;
             
         }
         else if (Input.GetKeyDown(KeyCode.A) && Lane2 == true)
@@ -46,9 +46,10 @@ public class PlayerScript : MonoBehaviour
             Lane2 = false;
             Lane3 = false;
 
+            //animator.SetTrigger("Jump");
             Vector3 cpos = Player.transform.position;
             cpos.x = -20.7f;
-            Player.position = cpos;
+            Player.transform.position = cpos;
 
         }
         else if (Input.GetKeyDown(KeyCode.D) && Lane2 == true)
@@ -57,9 +58,11 @@ public class PlayerScript : MonoBehaviour
             Lane1 = false;
             Lane2 = false;
 
+            //animator.SetTrigger("Jump");
             Vector3 cpos = Player.transform.position;
             cpos.x = -6.4f;
-            Player.position = cpos;
+            Player.transform.position = cpos;
+
         }
         else if (Input.GetKeyDown(KeyCode.A) && Lane1 == false && Lane3 == true)
         {
@@ -67,10 +70,11 @@ public class PlayerScript : MonoBehaviour
             Lane1 = false;
             Lane3 = false;
 
+            //animator.SetTrigger("Jump");
             Vector3 cpos = Player.transform.position;
             cpos.x = -13.5f;
-            Player.position = cpos;
-        }
+            Player.transform.position = cpos;
 
+        }
     }
 }

@@ -15,11 +15,11 @@ public class PlayerScript : MonoBehaviour
     bool Lane3 = false;
 
     public Transform Player;
-    //public Animator animator;
+    private Animator animator;
 
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -35,8 +35,14 @@ public class PlayerScript : MonoBehaviour
             Lane3 = false;
 
             //animator.SetTrigger("Jump");
+            animator.SetBool("isRunning", true);
             Vector3 cpos = Player.transform.position;
             cpos.x = -13.5f;
+
+            while (cpos.x != -13.5f)
+            {
+                rb.AddForce(3 * Time.deltaTime, 0, 0);
+            }
             Player.transform.position = cpos;
             
         }

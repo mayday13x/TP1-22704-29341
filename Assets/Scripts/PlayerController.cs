@@ -7,14 +7,16 @@ public class PlayerScript : MonoBehaviour
 
     public Rigidbody rb;
 
-    public float forwardForce = 100f;
+    public float forwardForce = 50f;
     //public float sidewaysForce = 50f;
 
     bool Lane1 = false;
     bool Lane2 = true;
     bool Lane3 = false;
 
-    public Transform Player;
+    public float speed = 100f;
+
+    public Transform Player, RightSide, LeftSide;
     private Animator animator;
 
     void Start()
@@ -25,7 +27,16 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
-        rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+        // rb.AddForce(0, 0, forwardForce * Time.deltaTime);     //mover para a frente
+
+        //float step = speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, RightSide.position, step);
+
+        if (animator.GetBool("isRunning") == true)
+        {
+            rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+
+        } 
 
 
         if (Input.GetKeyDown(KeyCode.D) && Lane3 == false && Lane2 == false && Lane1 == true)
@@ -34,17 +45,8 @@ public class PlayerScript : MonoBehaviour
             Lane1 = false;
             Lane3 = false;
 
-            //animator.SetTrigger("Jump");
-            animator.SetBool("isRunning", true);
-            Vector3 cpos = Player.transform.position;
-            cpos.x = -13.5f;
-
-            while (cpos.x != -13.5f)
-            {
-                rb.AddForce(3 * Time.deltaTime, 0, 0);
-            }
-            Player.transform.position = cpos;
-            
+            animator.SetTrigger("Jump");
+           // animator.SetBool("isRunning", true);
         }
         else if (Input.GetKeyDown(KeyCode.A) && Lane2 == true)
         {

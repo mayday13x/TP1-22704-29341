@@ -12,21 +12,23 @@ public class Player : MonoBehaviour
     public SIDE m_side = SIDE.MID;
     float newXPos = 0f;             // posição no X
     public float XValue;
-    public bool swipeLeft, swipeRight;
+    public bool swipeLeft, swipeRight, swipeUp, swipeDown;
     private CharacterController m_char;
     private Animator m_Animator;
     private float x;
     public float swipeSpeed;
 
-    public AudioSource aud;
-    public AudioClip clip;
+    public float JumpPower = 7f;
+    private float y;
+
+    public bool inJump;
+    public bool inRool;
 
     void Start()
     {
         transform.position = Vector3.zero;
         m_Animator = GetComponent<Animator>();
         m_char = GetComponent<CharacterController>();
-        aud = GetComponent<AudioSource>();
         
     }
 
@@ -40,6 +42,8 @@ public class Player : MonoBehaviour
         
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
+        swipeUp= Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        swipeDown= Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
         //testing
 
@@ -49,22 +53,10 @@ public class Player : MonoBehaviour
             
         }
 
+        Jump();
+
         if (isRunning())
         {
-
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
-            {
-
-                m_Animator.Play("jump");
-     
-            }
-
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-
-                m_Animator.Play("roll");
-                aud.Play();
-            }
 
             if (swipeLeft)
             {
@@ -104,8 +96,44 @@ public class Player : MonoBehaviour
             }
         }
 
+        Vector3 moveVector = new Vector3(x - transform.position.x,y * Time.deltaTime,0);
         x = Mathf.Lerp(x, newXPos, Time.deltaTime * swipeSpeed);
-        m_char.Move((x - transform.position.x) * Vector3.right);
+        m_char.Move(moveVector);
+
 
     }
+
+    public void Jump()
+    {
+        if (m_char.isGrounded)
+        {
+
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("falling"))
+            {
+                m_Animator.Play("landing");
+                inJump = false;
+            }
+
+            if (swipeUp)
+            {
+
+                y = JumpPower;
+                m_Animator.CrossFadeInFixedTime("jump", 0.1f);
+                //m_Animator.Play("jump");
+                inJump = true;
+            }
+
+        } else
+        {
+
+            y -= JumpPower * 3 * Time.deltaTime;
+            if(m_char.velocity.y < -0.1f)
+            {
+             //  m_Animator.Play("falling");
+            }
+          
+
+        }
+    }
+
 }

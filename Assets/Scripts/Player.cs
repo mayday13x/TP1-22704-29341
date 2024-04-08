@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        Vector3 moveVector = new Vector3(x - transform.position.x,y * Time.deltaTime,0);
+        Vector3 moveVector = new Vector3(x - transform.position.x,y * Time.deltaTime, 0);
         x = Mathf.Lerp(x, newXPos, Time.deltaTime * swipeSpeed);
         m_char.Move(moveVector);
 

@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5568472031897013445}
   m_Layer: 0
   m_Name: Road_Section
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa5416a21babfc4fb3e3e3170fd9ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  road: {fileID: 5528285627819574221}
 --- !u!1 &5687402523469122291
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,5 +416,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12.099909, y: 7.281096, z: 0.3839388}
-  m_Center: {x: 6.201287, y: 0.4385364, z: 0.3080306}
+  m_Size: {x: 12.099909, y: 9.151025, z: 2.337325}
+  m_Center: {x: 6.201287, y: 1.3735003, z: 1.2847238}

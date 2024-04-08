@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MoveRoad : MonoBehaviour
 {
+
+    public GameObject road;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -16,16 +18,11 @@ public class MoveRoad : MonoBehaviour
 
         transform.position += new Vector3(0,0,-17) * Time.deltaTime;        // controla velocidade do jogo
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Road"))
+        if (road.transform.position.z < -60f)
         {
-            Debug.Log("Destroied");
-            Destroy(gameObject);
-
+            Destroy(road);
         }
+
     }
 
 }

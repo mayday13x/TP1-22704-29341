@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   road: {fileID: 5528285627819574221}
+  isActive: 1
 --- !u!1 &5687402523469122291
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,5 +417,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12.099909, y: 9.151025, z: 2.337325}
-  m_Center: {x: 6.201287, y: 1.3735003, z: 1.2847238}
+  m_Size: {x: 15.60484, y: 18.499975, z: 2.337325}
+  m_Center: {x: 6.656938, y: 6.0479765, z: 1.2847238}

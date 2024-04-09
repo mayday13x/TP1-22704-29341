@@ -208,7 +208,7 @@ PrefabInstance:
       addedObject: {fileID: 1918717928}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1918717927}
+      addedObject: {fileID: 1918717929}
   m_SourcePrefab: {fileID: 100100000, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -581,7 +581,20 @@ MonoBehaviour:
   JumpPower: 40
   inJump: 0
   inRool: 0
---- !u!54 &1918717927
+--- !u!114 &1918717928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918717915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2557603e83e614c967b3c785e190c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadSection: {fileID: 5528285627819574221, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+--- !u!54 &1918717929
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -608,19 +621,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1918717928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918717915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf2557603e83e614c967b3c785e190c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadSection: {fileID: 5528285627819574221, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
 --- !u!1001 &4117668659720081226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -629,6 +629,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1000100483787893739, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1837764133164918107, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -669,10 +673,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5108823183601754390, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_Size.x
+      value: 13.433517
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108823183601754390, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_Size.y
+      value: 17.330046
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108823183601754390, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_Center.x
+      value: 6.287328
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108823183601754390, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_Center.y
+      value: 5.4629984
+      objectReference: {fileID: 0}
     - target: {fileID: 5528285627819574221, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
       propertyPath: m_Name
       value: Road_Section
       objectReference: {fileID: 0}
+    - target: {fileID: 5568472031897013445, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: isActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568472031897013445, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5568472031897013445, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_Animator
+      value: 
+      objectReference: {fileID: 1918717921}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

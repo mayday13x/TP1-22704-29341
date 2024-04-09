@@ -47,11 +47,6 @@ public class Player : MonoBehaviour
 
         //testing
 
-        if (Input.GetKeyDown(KeyCode.Tab))    // TAB -> Start on the menu
-        {
-            m_Animator.SetBool("isRunning", true);
-            
-        }
 
         Jump();
 

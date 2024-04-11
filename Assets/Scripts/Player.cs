@@ -60,9 +60,7 @@ public class Player : MonoBehaviour
             swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
         //testing
-
         moveLeft();
-
 
         if (isRunning())
             {
@@ -74,12 +72,19 @@ public class Player : MonoBehaviour
 
                 }
 
+            if (swipeDown && !isGrounded)
+            {
+                rb.AddForce(0, -JumpPower-3, 0, ForceMode.Impulse);
+            }
+
                 if (swipeLeft)
                 {
                     if (m_side == SIDE.MID)
                     {
-                    
-                      //  rb.transform.Translate(startMarker.transform.position, new Space());
+                   
+                    //  rb.transform.Translate(startMarker.transform.position, new Space());
+
+
                         rb.GetComponent<Animator>().Play("SwipeLeft");
                         
 
@@ -112,8 +117,8 @@ public class Player : MonoBehaviour
             public void moveLeft() {
                     if (rb.transform.position.x > -5)
                     {
-                         rb.transform.position += new Vector3(-5f * Time.deltaTime, 0,0);
-                         rb.GetComponent<Animator>().Play("SwipeLeft");
+                         rb.transform.position += new Vector3(-6f * Time.deltaTime, 0,0);
+                         //rb.GetComponent<Animator>().Play("SwipeLeft");
                     }
             }
 
@@ -121,12 +126,14 @@ public class Player : MonoBehaviour
             private void OnCollisionEnter(Collision collision)
             {
                 isGrounded = true;
-            }
+                m_Animator.Play("Running");
+    }
 
             private void OnCollisionExit(Collision collision)
             {
                 isGrounded = false;
-            }
+                m_Animator.Play("jump");
+    }
 
         }
 

@@ -9,126 +9,125 @@ public enum SIDE { LEFT, MID, RIGHT }   // lanes
 public class Player : MonoBehaviour
 {
 
+
     public SIDE m_side = SIDE.MID;
     float newXPos = 0f;             // posição no X
     public float XValue;
     public bool swipeLeft, swipeRight, swipeUp, swipeDown;
-    private CharacterController m_char;
-    private Animator m_Animator;
+    public Rigidbody rb;
+    public Animator m_Animator;
     private float x;
     public float swipeSpeed;
 
     public float JumpPower = 7f;
     private float y;
 
-    public bool inJump;
+    public bool isGrounded;
     public bool inRool;
+
+    /**********************************/
+    public Transform startMarker;
+    public Transform endMarker;
+    public Transform player;
+
+
+    public float speed;
+    public float distance;
+    private float xStartPosition;
+
+    float time = 0;
 
     void Start()
     {
-        transform.position = Vector3.zero;
+        //transform.position = Vector3.zero;
         m_Animator = GetComponent<Animator>();
-        m_char = GetComponent<CharacterController>();
-        
+        player = GetComponent<Transform>();
+        xStartPosition = rb.position.x;
+
     }
 
     bool isRunning()
     {
         return m_Animator.GetBool("isRunning");
     }
-    
-    void Update()
-    {
-        
-        swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
-        swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
-        swipeUp= Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
-        swipeDown= Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
+
+    void Update() 
+        {
+
+            swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
+            swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
+            swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+            swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
         //testing
 
+        moveLeft();
 
-        Jump();
 
         if (isRunning())
-        {
-
-            if (swipeLeft)
             {
-                if (m_side == SIDE.MID)
+            
+                if (swipeUp && isGrounded)
                 {
-                    newXPos = -XValue;
-                    m_side = SIDE.LEFT;
-                    //m_Animator.Play("SwipeRight");
+                    rb.AddForce(0, JumpPower, 0, ForceMode.Impulse);
+                    m_Animator.Play("jump");
 
                 }
-                else if (m_side == SIDE.RIGHT)
+
+                if (swipeLeft)
                 {
+                    if (m_side == SIDE.MID)
+                    {
+                    
+                      //  rb.transform.Translate(startMarker.transform.position, new Space());
+                        rb.GetComponent<Animator>().Play("SwipeLeft");
+                        
 
-                    newXPos = 0;
-                    m_side = SIDE.MID;
-                    //m_Animator.Play("SwipeRight");
+                    }
+                    else if (m_side == SIDE.RIGHT)
+                    {
 
+                        
+
+                    }
                 }
-            }
-            else if (swipeRight)
-            {
-                if (m_side == SIDE.MID)
+                else if (swipeRight)
                 {
-                    newXPos = XValue;
-                    m_side = SIDE.RIGHT;
-                    // m_Animator.Play("SwipeLeft");
+                    if (m_side == SIDE.MID)
+                    {
+                       
 
-                }
-                else if (m_side == SIDE.LEFT)
-                {
+                    }
+                    else if (m_side == SIDE.LEFT)
+                    {
 
-                    newXPos = 0;
-                    m_side = SIDE.MID;
-                    // m_Animator.Play("SwipeLeft");
+                       
 
+                    }
                 }
             }
         }
 
-        Vector3 moveVector = new Vector3(x - transform.position.x,y * Time.deltaTime, 0);
-        x = Mathf.Lerp(x, newXPos, Time.deltaTime * swipeSpeed);
-        m_char.Move(moveVector);
 
-
-    }
-
-    public void Jump()
-    {
-        if (m_char.isGrounded)
-        {
-
-            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("falling"))
-            {
-                m_Animator.Play("landing");
-                inJump = false;
+            public void moveLeft() {
+                    if (rb.transform.position.x > -5)
+                    {
+                         rb.transform.position += new Vector3(-5f * Time.deltaTime, 0,0);
+                         rb.GetComponent<Animator>().Play("SwipeLeft");
+                    }
             }
 
-            if (swipeUp)
-            {
 
-                y = JumpPower;
-                m_Animator.CrossFadeInFixedTime("jump", 0.1f);
-                //m_Animator.Play("jump");
-                inJump = true;
+            private void OnCollisionEnter(Collision collision)
+            {
+                isGrounded = true;
             }
 
-        } else
-        {
-
-            y -= JumpPower * 3 * Time.deltaTime;
-            if(m_char.velocity.y < -0.1f)
+            private void OnCollisionExit(Collision collision)
             {
-             //  m_Animator.Play("falling");
+                isGrounded = false;
             }
-          
 
         }
-    }
 
-}
+

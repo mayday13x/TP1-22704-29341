@@ -6,7 +6,7 @@ public class MoveRoad : MonoBehaviour
 {
 
     public GameObject road;
-    public bool isActive;
+    public bool isActive = false;
     private Animator m_Animator;
 
 

@@ -1,9 +1,11 @@
-    using System.Collections;
-    using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
 
-    [System.Serializable]
+[System.Serializable]
 
     public enum SIDE { LEFT, MID, RIGHT }   // lanes
 
@@ -16,29 +18,20 @@ using UnityEngine;
     public Rigidbody rb;
     public Animator m_Animator;
     public float swipeSpeed;
+    public CapsuleCollider[] capsuleColliders;
 
     public float JumpPower = 7f;
     public float DownPower = 11f;
 
+    public bool fromAir = false;
+
     public bool isGrounded;
     public bool inRool;
-
-    /**********************************/
-    public Transform Left;
-    public Transform Right;
-    public Transform Mid;
-
-
-    public float speed;
-    public float distance;
-    private float xStartPosition;
 
 
     void Start()
     {
-        //transform.position = Vector3.zero;
         m_Animator = GetComponent<Animator>();
-        xStartPosition = rb.position.x;
 
     }
 
@@ -54,8 +47,8 @@ using UnityEngine;
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
-
-    if (isRunning())
+      
+        if (isRunning())
         {
             
             if (swipeUp && isGrounded)
@@ -67,51 +60,81 @@ using UnityEngine;
 
             if (swipeDown && !isGrounded)
             {
-                rb.AddForce(0, -DownPower, 0, ForceMode.Impulse);
+                rb.AddForce(0, -250f, 0, ForceMode.Impulse);
+                fromAir = true;
+  
+
             } else if (swipeDown && isGrounded)
             {
                 //roll
+
+                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Rool"))
+                {
+                    // rb.GetComponents<CapsuleCollider>()[0].enabled = false;
+                    Debug.Log("rolling");
+                }
+                else
+                {
+                    Debug.Log("notRolling");
+                    // rb.GetComponents<CapsuleCollider>()[1].enabled = true;
+                }
+
+                m_Animator.Play("Roll");
             }
 
             if (swipeLeft){
 
                 if (m_side == SIDE.MID)
                 {
-                   
-                    rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
+
+                    //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
+                    rb.transform.DOMoveX(-3, 0.1f);
                     m_side = SIDE.LEFT;
                         
                 } else if (m_side == SIDE.RIGHT) {
 
-                    rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
+                    rb.transform.DOMoveX(0, 0.1f);
+                    //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
                     m_side = SIDE.MID;
 
                 }
 
-                }
-                else if (swipeRight)
+            }else if (swipeRight){
+
+                if (m_side == SIDE.MID)
                 {
-                    if (m_side == SIDE.MID)
-                    {
-                        rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                        m_side = SIDE.RIGHT;
+                //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+                rb.transform.DOMoveX(3, 0.1f);
+                m_side = SIDE.RIGHT;
 
-                    } else if (m_side == SIDE.LEFT) {
+                } else if (m_side == SIDE.LEFT) {
 
-                        rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                        m_side = SIDE.MID;
+                    //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+                    rb.transform.DOMoveX(0, 0.1f);
+                    m_side = SIDE.MID;
 
-                     }
                 }
             }
         }
+    }
 
+
+   
 
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = true;
-            m_Animator.Play("Running");
+            if (fromAir)
+            {
+                m_Animator.Play("Roll");
+                fromAir = false;
+                
+            } else
+            {
+                m_Animator.Play("Running");
+            }
+           
         }
          
     }
@@ -121,7 +144,7 @@ using UnityEngine;
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = false;
-            m_Animator.Play("jump");
+          //  m_Animator.Play("jump");
         }
     }
 }

@@ -12,20 +12,8 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Trigger"))
         {   
-            Instantiate(roadSection, new Vector3(0,0, 49.57f), Quaternion.identity);
+            Instantiate(roadSection, new Vector3(0,0, 36.61f), Quaternion.identity);
         }
-
-        if (other.gameObject.CompareTag("LeftSide") || other.gameObject.CompareTag("Mid") || other.gameObject.CompareTag("RightSide"))
-        {
-            
-            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Debug.Log("Collide : " + other.gameObject.tag);
-            
-
-        }
-
-
-
 
     }
 

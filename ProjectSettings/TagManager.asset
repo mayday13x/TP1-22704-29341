@@ -7,6 +7,9 @@ TagManager:
   - Trigger
   - Destroy
   - Road
+  - LeftSide
+  - RightSide
+  - Mid
   layers:
   - Default
   - TransparentFX

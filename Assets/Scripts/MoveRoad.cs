@@ -37,7 +37,7 @@ public class MoveRoad : MonoBehaviour
             
              transform.position += new Vector3(0,0,-17) * Time.deltaTime;        // controla velocidade do jogo
 
-             if (road.transform.position.z < -60f)
+             if (road.transform.position.z < -130f)
                {
                         Destroy(road);
                }

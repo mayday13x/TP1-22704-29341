@@ -10,6 +10,7 @@ TagManager:
   - LeftSide
   - RightSide
   - Mid
+  - Subway
   layers:
   - Default
   - TransparentFX

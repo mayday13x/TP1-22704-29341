@@ -18,7 +18,7 @@ using UnityEditor.Experimental.GraphView;
     public Rigidbody rb;
     public Animator m_Animator;
     public float swipeSpeed;
-    public CapsuleCollider[] capsuleColliders;
+   // public CapsuleCollider[] capsuleColliders;
 
     public float JumpPower = 7f;
     public float DownPower = 11f;
@@ -26,7 +26,7 @@ using UnityEditor.Experimental.GraphView;
     public bool fromAir = false;
 
     public bool isGrounded;
-    public bool inRool;
+    public bool isRolling;
 
 
     void Start()
@@ -42,12 +42,14 @@ using UnityEditor.Experimental.GraphView;
 
     void Update() {
 
+        ChangeCollider();
+
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
-        swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+        swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
-      
+
         if (isRunning())
         {
             
@@ -62,25 +64,18 @@ using UnityEditor.Experimental.GraphView;
             {
                 rb.AddForce(0, -250f, 0, ForceMode.Impulse);
                 fromAir = true;
-  
+                m_Animator.SetBool("isRolling", true);
+
 
             } else if (swipeDown && isGrounded)
             {
                 //roll
-
-                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Rool"))
-                {
-                    // rb.GetComponents<CapsuleCollider>()[0].enabled = false;
-                    Debug.Log("rolling");
-                }
-                else
-                {
-                    Debug.Log("notRolling");
-                    // rb.GetComponents<CapsuleCollider>()[1].enabled = true;
-                }
-
+                
+                m_Animator.SetBool("isRolling", true);
                 m_Animator.Play("Roll");
+        
             }
+
 
             if (swipeLeft){
 
@@ -88,29 +83,29 @@ using UnityEditor.Experimental.GraphView;
                 {
 
                     //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
-                    rb.transform.DOMoveX(-3, 0.1f);
+                    rb.transform.DOMoveX(-3.4f, 0.20f);          // normalmente 3 com novo mapa 3.4
                     m_side = SIDE.LEFT;
                         
                 } else if (m_side == SIDE.RIGHT) {
 
-                    rb.transform.DOMoveX(0, 0.1f);
+                    rb.transform.DOMoveX(0, 0.20f);
                     //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
                     m_side = SIDE.MID;
 
                 }
 
-            }else if (swipeRight){
+            } else if (swipeRight){
 
                 if (m_side == SIDE.MID)
                 {
                 //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                rb.transform.DOMoveX(3, 0.1f);
+                rb.transform.DOMoveX(3.2f, 0.20f);
                 m_side = SIDE.RIGHT;
 
                 } else if (m_side == SIDE.LEFT) {
 
                     //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                    rb.transform.DOMoveX(0, 0.1f);
+                    rb.transform.DOMoveX(0, 0.20f);
                     m_side = SIDE.MID;
 
                 }
@@ -119,7 +114,20 @@ using UnityEditor.Experimental.GraphView;
     }
 
 
-   
+    private void ChangeCollider()
+    {
+        if (m_Animator.GetBool("isRolling") == true)
+        {
+            rb.GetComponent<CapsuleCollider>().center = new Vector3(0, 2, 0);
+            rb.GetComponent<CapsuleCollider>().height = 4;
+
+        }
+        else
+        {
+            rb.GetComponent<CapsuleCollider>().center = new Vector3(0, 4.85f, 0);
+            rb.GetComponent<CapsuleCollider>().height = 9.61f;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision){
         if (collision.gameObject.CompareTag("Road"))
@@ -128,6 +136,7 @@ using UnityEditor.Experimental.GraphView;
             if (fromAir)
             {
                 m_Animator.Play("Roll");
+                m_Animator.SetBool("isRolling", true);
                 fromAir = false;
                 
             } else
@@ -147,6 +156,8 @@ using UnityEditor.Experimental.GraphView;
           //  m_Animator.Play("jump");
         }
     }
+
+
 }
 
 

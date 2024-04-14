@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraController : MonoBehaviour
 {
@@ -10,6 +11,17 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = playerTransform.position + offset;
+
+        Vector3 targetPosition = playerTransform.position + offset;
+
+
+        targetPosition.x = playerTransform.position.x + offset.x;
+        targetPosition.y = 3;
+        targetPosition.z = playerTransform.position.z + offset.z;
+
+    
+        transform.DOMove(targetPosition, 0.25f);
+
+
     }
 }

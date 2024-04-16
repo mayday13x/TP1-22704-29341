@@ -251,15 +251,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2188022
+      value: 0.18537128
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2188022
+      value: 0.18537128
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2188022
+      value: 0.18537128
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -267,11 +267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.407
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.09
+      value: -36.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -308,6 +308,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829150156303868160, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829150156303868160, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829150156303868160, guid: ddfed8ae57d0b1245b8524ba56ecba75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -74.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -509,13 +521,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.101650245, y: -0.035746288, z: 0.0062068542, w: -0.99415845}
+  m_LocalRotation: {x: -0.10037586, y: -0.035754215, z: 0.0061610295, w: -0.9942879}
   m_LocalPosition: {x: 0.3, y: 13.5, z: -64.3}
   m_LocalScale: {x: 0.38245353, y: 0.3824534, z: 0.3824534}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 11.687, y: -355.912, z: -0.297}
+  m_LocalEulerAnglesHint: {x: 11.54, y: -355.911, z: -0.297}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1918717932}
-  offset: {x: 0, y: 6, z: -8}
+  offset: {x: 0, y: 6, z: -4.3}
 --- !u!1 &1093326784
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +843,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadSection: {fileID: 5528285627819574221, guid: ce4402fe548d97849a5d43a7d96dbfad, type: 3}
+  roadSectionType1: {fileID: 5528285627819574221, guid: f93d44fd2ede9eb4d8bb65dc4a28c9cc, type: 3}
+  roadSectionType2: {fileID: 0}
+  roadSectionType3: {fileID: 0}
   player: {fileID: 1918717915}
 --- !u!54 &1918717929
 Rigidbody:
@@ -936,7 +951,7 @@ Transform:
   m_GameObject: {fileID: 4471717848233933753}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.58, z: 0}
+  m_LocalPosition: {x: 0, y: -2.58, z: -18.8}
   m_LocalScale: {x: 11.068721, y: 1, z: 66.237595}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -979,8 +994,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.75932395, z: 0.99815255}
-  m_Center: {x: 0, y: 0.37513143, z: 0.00092370395}
+  m_Size: {x: 1, y: 0.75932395, z: 0.7761911}
+  m_Center: {x: 0, y: 0.37513143, z: -0.11005595}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2629162183260767040}
   - component: {fileID: 1282095511376837996}
   - component: {fileID: 6675847809177230394}
-  - component: {fileID: 267825003191185338}
   m_Layer: 0
   m_Name: blocker_roll
   m_TagString: Obstacle
@@ -104,26 +103,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8980657, y: 1.6662841, z: 0.35548306}
-  m_Center: {x: 0.018141866, y: 1.9279983, z: -0.41587305}
---- !u!65 &267825003191185338
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2510425778822004203}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8980657, y: 0.122216225, z: 0.42285633}
-  m_Center: {x: 0.018141866, y: 2.8852606, z: -0.48601198}
+  m_Size: {x: 1.8980657, y: 1.8141592, z: 0.35548306}
+  m_Center: {x: 0.018141866, y: 2.001936, z: -0.41587305}

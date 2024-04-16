@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   road: {fileID: 5528285627819574221}
   isActive: 1
+  roadVelocity: -17
 --- !u!1 &5723458811997611513
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 6623230617020628616}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.99, y: 2.82, z: 0.94}
+  m_LocalPosition: {x: -10.99, y: 0.88, z: 0.94}
   m_LocalScale: {x: 1.778823, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

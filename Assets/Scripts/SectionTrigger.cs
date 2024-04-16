@@ -15,7 +15,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Trigger"))
         {   
-            Instantiate(roadSectionType1, new Vector3(0,-1, 49.8f), Quaternion.identity);
+            Instantiate(roadSectionType1, new Vector3(0,-1, 0.4f), Quaternion.identity);
           //  Instantiate(roadSection, new Vector3(0, -1, 101.7f), Quaternion.identity);
         }
 

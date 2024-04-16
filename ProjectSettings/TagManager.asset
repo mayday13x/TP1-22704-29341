@@ -11,6 +11,7 @@ TagManager:
   - RightSide
   - Mid
   - Subway
+  - Obstacle
   layers:
   - Default
   - TransparentFX

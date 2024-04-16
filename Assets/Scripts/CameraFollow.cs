@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 
 
         targetPosition.x = playerTransform.position.x + offset.x;
-        targetPosition.y = 3;
+        targetPosition.y = 1;
         targetPosition.z = playerTransform.position.z + offset.z;
 
     

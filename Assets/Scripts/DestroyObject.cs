@@ -8,7 +8,7 @@ public class DestroyObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Road"))
         {
-            Debug.Log("Destroied");
+            Debug.Log("Destroyed");
             Destroy(gameObject);
             
         }

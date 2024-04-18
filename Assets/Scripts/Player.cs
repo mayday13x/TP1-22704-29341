@@ -27,6 +27,7 @@ using UnityEditor.Experimental.GraphView;
 
     public bool isGrounded;
     public bool isRolling;
+    public bool isDead = false;
 
 
     void Start()
@@ -88,25 +89,41 @@ using UnityEditor.Experimental.GraphView;
                         
                 } else if (m_side == SIDE.RIGHT) {
 
-                    rb.transform.DOMoveX(0, 0.20f);
-                    //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
-                    m_side = SIDE.MID;
+                    if (!isDead){
+
+                        rb.transform.DOMoveX(0, 0.20f);
+                        //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
+                        m_side = SIDE.MID;
+                    }
+                    if (isDead){
+
+                        m_side = SIDE.RIGHT;
+                        m_Animator.Play("Dead");
+                        
+                    }
 
                 }
 
-            } else if (swipeRight){
+            } else if (swipeRight){ 
 
                 if (m_side == SIDE.MID)
                 {
-                //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+                rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
                 rb.transform.DOMoveX(3.2f, 0.20f);
                 m_side = SIDE.RIGHT;
 
                 } else if (m_side == SIDE.LEFT) {
 
-                    //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                    rb.transform.DOMoveX(0, 0.20f);
-                    m_side = SIDE.MID;
+                    if (!isDead){
+
+                        //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+                        rb.transform.DOMoveX(0, 0.20f);
+                        m_side = SIDE.MID;
+                    }
+                    if (isDead) {
+                        m_side = SIDE.LEFT;
+                        m_Animator.Play("Dead");
+                    }
 
                 }
             }
@@ -151,6 +168,7 @@ using UnityEditor.Experimental.GraphView;
         {
             m_Animator.SetBool("isRunning", false);
             Debug.Log("HIT OBSTACLE");
+            isDead = true;
             m_Animator.Play("Death");
             //  m_Animator.Play("jump");
         }

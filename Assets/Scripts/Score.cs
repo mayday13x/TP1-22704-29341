@@ -15,8 +15,8 @@ public class Score : MonoBehaviour
     void Update()
     {
         Debug.Log(123);
-      //  ScoreText.text = "Score: " + Score_;
-        if (this.GetComponent<Animator>().GetBool("isRunning"))
+
+        if (GetComponent<Animator>().GetBool("isRunning"))
         {
             totalTime += Time.deltaTime;
             Score_ += totalTime * ScoreRate;

@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-   
-    public GameObject roadSection;
-    public GameObject roadSectionType1;
-    public GameObject roadSectionType2;
-    public GameObject roadSectionType3;
-    public GameObject player;
+
+    public GameObject[] roadSection;
+    public int zPos = 159;
+    public int secNum;
 
     private void OnTriggerEnter(Collider other)
     {
+
+        Debug.Log(Random.Range(0,2));
         if (other.gameObject.CompareTag("Trigger"))
         {   
-            Instantiate(roadSectionType1, new Vector3(0,-1, 0.4f), Quaternion.identity);
-          //  Instantiate(roadSection, new Vector3(0, -1, 101.7f), Quaternion.identity);
+           // Instantiate(roadSection, roadSection[0].transform.position + new Vector3(0,0,54), Quaternion.identity);
+            Instantiate(roadSection[1], new Vector3(0,0,zPos), Quaternion.identity);
+            zPos += 159;
         }
 
     }

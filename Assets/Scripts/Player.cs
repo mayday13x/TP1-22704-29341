@@ -18,7 +18,8 @@ using UnityEditor.Experimental.GraphView;
     public Rigidbody rb;
     public Animator m_Animator;
     public float swipeSpeed;
-   // public CapsuleCollider[] capsuleColliders;
+    public float GameSpeed = 17;
+    // public CapsuleCollider[] capsuleColliders;
 
     public float JumpPower = 7f;
     public float DownPower = 11f;
@@ -42,6 +43,12 @@ using UnityEditor.Experimental.GraphView;
         return m_Animator.GetBool("isRunning");
     }
 
+    bool isRolling_()
+    {
+        isRolling = m_Animator.GetBool("isRolling");
+        return isRolling;
+    }
+
     void Update() {
 
         ChangeCollider();
@@ -51,9 +58,12 @@ using UnityEditor.Experimental.GraphView;
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
-        if (isRunning())
+        if (isRunning() && !isRolling)
         {
             
+            transform.position += new Vector3(0, 0, GameSpeed) * Time.deltaTime;
+
+
             if (swipeUp && isGrounded)
             {
                 rb.AddForce(0, JumpPower, 0, ForceMode.Impulse);
@@ -83,8 +93,7 @@ using UnityEditor.Experimental.GraphView;
                 if (m_side == SIDE.MID)
                 {
 
-                    //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
-                    rb.transform.DOMoveX(-3.4f, 0.20f);          // normalmente 3 com novo mapa 3.4
+                    rb.transform.DOMoveX(-3.4f, 0.20f);
                     m_side = SIDE.LEFT;
                         
                 } else if (m_side == SIDE.RIGHT) {
@@ -92,7 +101,6 @@ using UnityEditor.Experimental.GraphView;
                     if (!isDead){
 
                         rb.transform.DOMoveX(0, 0.20f);
-                        //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
                         m_side = SIDE.MID;
                     }
                     if (isDead){
@@ -116,7 +124,6 @@ using UnityEditor.Experimental.GraphView;
 
                     if (!isDead){
 
-                        //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
                     }
@@ -170,7 +177,6 @@ using UnityEditor.Experimental.GraphView;
             Debug.Log("HIT OBSTACLE");
             isDead = true;
             m_Animator.Play("Death");
-            //  m_Animator.Play("jump");
         }
 
     }
@@ -180,7 +186,6 @@ using UnityEditor.Experimental.GraphView;
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = false;
-          //  m_Animator.Play("jump");
         }
 
     }

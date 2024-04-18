@@ -145,7 +145,16 @@ using UnityEditor.Experimental.GraphView;
             }
            
         }
-         
+
+
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            m_Animator.SetBool("isRunning", false);
+            Debug.Log("HIT OBSTACLE");
+            m_Animator.Play("Death");
+            //  m_Animator.Play("jump");
+        }
+
     }
 
     private void OnCollisionExit(Collision collision){
@@ -156,13 +165,6 @@ using UnityEditor.Experimental.GraphView;
           //  m_Animator.Play("jump");
         }
 
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            m_Animator.SetBool("isRunning",false);
-            Debug.Log("HIT OBSTACLE");
-            m_Animator.Play("Death");
-            //  m_Animator.Play("jump");
-        }
     }
 
 

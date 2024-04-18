@@ -33,6 +33,7 @@ using UnityEditor.Experimental.GraphView;
     void Start()
     {
         m_Animator = GetComponent<Animator>();
+        m_Animator.SetBool("isRunning",false);
 
     }
 
@@ -158,7 +159,7 @@ using UnityEditor.Experimental.GraphView;
                 
             } else
             {
-                m_Animator.Play("Running");
+              //  m_Animator.Play("Running");
             }
            
         }

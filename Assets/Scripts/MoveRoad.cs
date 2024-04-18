@@ -26,7 +26,6 @@ public class MoveRoad : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))    // TAB -> Start on the menu
         {
             m_Animator.SetBool("isRunning", true);
-            Debug.Log("isActive <-----------");
             isActive = true;
 
         }

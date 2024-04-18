@@ -8,9 +8,7 @@ public class MoveRoad : MonoBehaviour
     public GameObject road;
     public bool isActive = false;
     private Animator m_Animator;
-    public float roadVelocity = -17;
-
-    public AudioSource main_sound;
+    public float roadVelocity = 17;
 
 
     // Start is called before the first frame update
@@ -35,14 +33,18 @@ public class MoveRoad : MonoBehaviour
 
         if (isActive && m_Animator.GetBool("isRunning"))
         {
+            
 
-            transform.position += new Vector3(0,0,roadVelocity) * Time.deltaTime;        // controla velocidade do jogo
+         //    transform.position += new Vector3(0,0,roadVelocity) * Time.deltaTime;        // controla velocidade do jogo
 
-            if (road.transform.position.z < -130f)
-            {
-                Destroy(road);
-            }
+
+             if (road.transform.position.z < -130f)
+               {
+                        Destroy(road);
+               }
         }
+       
+
     }
 
 }

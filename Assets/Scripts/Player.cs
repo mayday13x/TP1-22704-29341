@@ -18,7 +18,8 @@ using UnityEditor.Experimental.GraphView;
     public Rigidbody rb;
     public Animator m_Animator;
     public float swipeSpeed;
-   // public CapsuleCollider[] capsuleColliders;
+    public float GameSpeed = 17;
+    // public CapsuleCollider[] capsuleColliders;
 
     public float JumpPower = 7f;
     public float DownPower = 11f;
@@ -29,24 +30,9 @@ using UnityEditor.Experimental.GraphView;
     public bool isRolling;
     public bool isDead = false;
 
-    public AudioSource jumpSound;
-
-    public AudioSource deathSound;
-
-    public AudioSource fallingSound;
-
-    public AudioSource landingSound;
-
-    public AudioSource dodgeSound;
-
-    public AudioSource rollingSound;
-
-    public AudioSource main_sound;
-
 
     void Start()
     {
-        //main_sound.Pause();
         m_Animator = GetComponent<Animator>();
         m_Animator.SetBool("isRunning",false);
 
@@ -55,6 +41,12 @@ using UnityEditor.Experimental.GraphView;
     bool isRunning()
     {
         return m_Animator.GetBool("isRunning");
+    }
+
+    bool isRolling_()
+    {
+        isRolling = m_Animator.GetBool("isRolling");
+        return isRolling;
     }
 
     void Update() {
@@ -66,12 +58,14 @@ using UnityEditor.Experimental.GraphView;
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
         swipeDown = Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow);
 
-        if (isRunning())
+        if (isRunning() && !isRolling)
         {
             
+            transform.position += new Vector3(0, 0, GameSpeed) * Time.deltaTime;
+
+
             if (swipeUp && isGrounded)
             {
-                jumpSound.Play();
                 rb.AddForce(0, JumpPower, 0, ForceMode.Impulse);
                 m_Animator.Play("jump");
 
@@ -87,7 +81,7 @@ using UnityEditor.Experimental.GraphView;
             } else if (swipeDown && isGrounded)
             {
                 //roll
-                rollingSound.Play();
+                
                 m_Animator.SetBool("isRolling", true);
                 m_Animator.Play("Roll");
         
@@ -96,13 +90,10 @@ using UnityEditor.Experimental.GraphView;
 
             if (swipeLeft){
 
-                dodgeSound.Play();
-
                 if (m_side == SIDE.MID)
                 {
 
-                    //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
-                    rb.transform.DOMoveX(-3.4f, 0.20f);          // normalmente 3 com novo mapa 3.4
+                    rb.transform.DOMoveX(-3.4f, 0.20f);
                     m_side = SIDE.LEFT;
                         
                 } else if (m_side == SIDE.RIGHT) {
@@ -110,32 +101,29 @@ using UnityEditor.Experimental.GraphView;
                     if (!isDead){
 
                         rb.transform.DOMoveX(0, 0.20f);
-                        //rb.AddForce(-swipeSpeed, 0, 0, ForceMode.Impulse);
                         m_side = SIDE.MID;
                     }
                     if (isDead){
 
                         m_side = SIDE.RIGHT;
                         m_Animator.Play("Dead");
+                        
                     }
 
                 }
 
-            } else if (swipeRight){
-
-                dodgeSound.Play();
+            } else if (swipeRight){ 
 
                 if (m_side == SIDE.MID)
                 {
-                    rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                    rb.transform.DOMoveX(3.2f, 0.20f);
-                    m_side = SIDE.RIGHT;
+                rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+                rb.transform.DOMoveX(3.2f, 0.20f);
+                m_side = SIDE.RIGHT;
 
                 } else if (m_side == SIDE.LEFT) {
 
                     if (!isDead){
 
-                        //rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
                     }
@@ -166,7 +154,6 @@ using UnityEditor.Experimental.GraphView;
     }
 
     private void OnCollisionEnter(Collision collision){
-
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = true;
@@ -174,7 +161,6 @@ using UnityEditor.Experimental.GraphView;
             {
                 m_Animator.Play("Roll");
                 m_Animator.SetBool("isRolling", true);
-                rollingSound.Play();
                 fromAir = false;
                 
             } else
@@ -191,9 +177,6 @@ using UnityEditor.Experimental.GraphView;
             Debug.Log("HIT OBSTACLE");
             isDead = true;
             m_Animator.Play("Death");
-            deathSound.Play();
-            fallingSound.Play();
-            //  m_Animator.Play("jump");
         }
 
     }
@@ -203,7 +186,6 @@ using UnityEditor.Experimental.GraphView;
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = false;
-          //  m_Animator.Play("jump");
         }
 
     }

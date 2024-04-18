@@ -29,9 +29,24 @@ using UnityEditor.Experimental.GraphView;
     public bool isRolling;
     public bool isDead = false;
 
+    public AudioSource jumpSound;
+
+    public AudioSource deathSound;
+
+    public AudioSource fallingSound;
+
+    public AudioSource landingSound;
+
+    public AudioSource dodgeSound;
+
+    public AudioSource rollingSound;
+
+    public AudioSource main_sound;
+
 
     void Start()
     {
+        //main_sound.Pause();
         m_Animator = GetComponent<Animator>();
         m_Animator.SetBool("isRunning",false);
 
@@ -56,6 +71,7 @@ using UnityEditor.Experimental.GraphView;
             
             if (swipeUp && isGrounded)
             {
+                jumpSound.Play();
                 rb.AddForce(0, JumpPower, 0, ForceMode.Impulse);
                 m_Animator.Play("jump");
 
@@ -71,7 +87,7 @@ using UnityEditor.Experimental.GraphView;
             } else if (swipeDown && isGrounded)
             {
                 //roll
-                
+                rollingSound.Play();
                 m_Animator.SetBool("isRolling", true);
                 m_Animator.Play("Roll");
         
@@ -79,6 +95,8 @@ using UnityEditor.Experimental.GraphView;
 
 
             if (swipeLeft){
+
+                dodgeSound.Play();
 
                 if (m_side == SIDE.MID)
                 {
@@ -99,18 +117,19 @@ using UnityEditor.Experimental.GraphView;
 
                         m_side = SIDE.RIGHT;
                         m_Animator.Play("Dead");
-                        
                     }
 
                 }
 
-            } else if (swipeRight){ 
+            } else if (swipeRight){
+
+                dodgeSound.Play();
 
                 if (m_side == SIDE.MID)
                 {
-                rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
-                rb.transform.DOMoveX(3.2f, 0.20f);
-                m_side = SIDE.RIGHT;
+                    rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+                    rb.transform.DOMoveX(3.2f, 0.20f);
+                    m_side = SIDE.RIGHT;
 
                 } else if (m_side == SIDE.LEFT) {
 
@@ -147,6 +166,7 @@ using UnityEditor.Experimental.GraphView;
     }
 
     private void OnCollisionEnter(Collision collision){
+
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = true;
@@ -154,6 +174,7 @@ using UnityEditor.Experimental.GraphView;
             {
                 m_Animator.Play("Roll");
                 m_Animator.SetBool("isRolling", true);
+                rollingSound.Play();
                 fromAir = false;
                 
             } else
@@ -170,6 +191,8 @@ using UnityEditor.Experimental.GraphView;
             Debug.Log("HIT OBSTACLE");
             isDead = true;
             m_Animator.Play("Death");
+            deathSound.Play();
+            fallingSound.Play();
             //  m_Animator.Play("jump");
         }
 

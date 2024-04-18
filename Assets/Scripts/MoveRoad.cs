@@ -10,6 +10,8 @@ public class MoveRoad : MonoBehaviour
     private Animator m_Animator;
     public float roadVelocity = 17;
 
+    public AudioSource main_sound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,6 @@ public class MoveRoad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         m_Animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 
         if (Input.GetKeyDown(KeyCode.Tab))    // TAB -> Start on the menu

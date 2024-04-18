@@ -7,11 +7,16 @@ public class Score : MonoBehaviour
     float totalTime;
     float ScoreRate = 0.03f;
     public float Score_;
+  //  public Rigidbody rb;
 
     // Update is called once per frame
     void Update()
     {
-        totalTime += Time.deltaTime;
-        Score_ += totalTime * ScoreRate;
+        if (this.GetComponent<Animator>().GetBool("isRunning"))
+        {
+            totalTime += Time.deltaTime;
+            Score_ += totalTime * ScoreRate;
+        }
+
     }
 }

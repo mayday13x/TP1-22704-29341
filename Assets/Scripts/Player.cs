@@ -51,6 +51,15 @@ using UnityEditor.Experimental.GraphView;
 
     }
 
+    void Play()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))    // TAB -> Start on the menu
+        {
+            m_Animator.SetBool("isRunning", true);
+
+        }
+    }
+
     bool isRunning()
     {
         return m_Animator.GetBool("isRunning");
@@ -69,6 +78,7 @@ using UnityEditor.Experimental.GraphView;
 
     void Update() {
 
+        Play();
         ChangeCollider();
 
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
@@ -149,12 +159,12 @@ using UnityEditor.Experimental.GraphView;
 
                     if (!isDead())
                         {
-
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
                     } else {
                         m_side = SIDE.LEFT;
-                        m_Animator.Play("Dead");
+                        rb.transform.DOMoveX(-3.4f, 0.20f);
+                        //m_Animator.Play("Dead");
                     }
 
                 }
@@ -203,7 +213,7 @@ using UnityEditor.Experimental.GraphView;
             m_Animator.SetBool("isRunning", false);
             Debug.Log("HIT OBSTACLE");
             m_Animator.Play("Death");
-            m_Animator.SetBool("isDead", false);
+           // m_Animator.SetBool("isDead", true);
             deathSound.Play();
             fallingSound.Play();
         }

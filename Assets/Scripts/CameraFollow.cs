@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
 
         if (!player.GetComponent<Animator>().GetBool("isRunning"))
         {
-            targetPosition.z = playerTransform.position.z - 10;
+            targetPosition.z = playerTransform.position.z - 8;
 
         } else
         {

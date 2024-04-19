@@ -24,12 +24,7 @@ public class MoveRoad : MonoBehaviour
     {
         m_Animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 
-        if (Input.GetKeyDown(KeyCode.Tab))    // TAB -> Start on the menu
-        {
-            m_Animator.SetBool("isRunning", true);
-            isActive = true;
 
-        }
         
 
      /*   if (isActive && m_Animator.GetBool("isRunning"))

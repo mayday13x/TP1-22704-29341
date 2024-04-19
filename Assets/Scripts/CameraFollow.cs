@@ -19,16 +19,16 @@ public class CameraController : MonoBehaviour
         {
             targetPosition.z = playerTransform.position.z - 8;
 
-        } else
+        }
+
+        else
         {
                // targetPosition.x = playerTransform.position.x + offset.x;
                 targetPosition.y = playerTransform.position.y + offset.y;
                // targetPosition.z = playerTransform.position.z + offset.z;
         }
 
-
         transform.DOMove(targetPosition, 0.30f);
-
-
     }
+
 }

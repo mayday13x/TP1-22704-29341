@@ -10,7 +10,8 @@ public class DestroyObject : MonoBehaviour
         {
             Debug.Log("Destroyed");
             Destroy(gameObject);
-            
         }
+
     }
+
 }

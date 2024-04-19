@@ -10,7 +10,6 @@ using TMPro;
     public class Player : MonoBehaviour
     {
 
-
     public SIDE m_side = SIDE.MID;
     private bool swipeLeft, swipeRight, swipeUp, swipeDown;
     public Rigidbody rb;
@@ -24,7 +23,6 @@ using TMPro;
     public float DownPower = 11f;
 
     public bool fromAir = false;
-
     public bool isGrounded;
     public bool isRolling;
     public bool isRetry;
@@ -116,7 +114,9 @@ using TMPro;
                 m_Animator.SetBool("isRolling", true);
 
 
-            } else if (swipeDown && isGrounded)
+            }
+
+            else if (swipeDown && isGrounded)
             {
                 //roll
 
@@ -129,22 +129,29 @@ using TMPro;
 
             if (swipeLeft){
 
-                dodgeSound.Play();
-
                 if (m_side == SIDE.MID)
                 {
 
                     rb.transform.DOMoveX(-3.4f, 0.20f);
                     m_side = SIDE.LEFT;
-                        
-                } else if (m_side == SIDE.RIGHT) {
+                    dodgeSound.Play();
+
+                }
+
+                else if (m_side == SIDE.RIGHT)
+                {
 
                     if (!isDead())
                     {
 
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
-                    } else { 
+                        dodgeSound.Play();
+
+                    }
+
+                    else
+                    { 
 
                         m_side = SIDE.RIGHT;
                         m_Animator.Play("Dead");
@@ -153,28 +160,36 @@ using TMPro;
 
                 }
 
-            } else if (swipeRight){
+            }
 
-                dodgeSound.Play();
+            else if (swipeRight)
+            {
 
                 if (m_side == SIDE.MID)
                 {
+                    rb.transform.DOMoveX(3.2f, 0.20f);
+                    m_side = SIDE.RIGHT;
+                    dodgeSound.Play();
 
-                rb.transform.DOMoveX(3.2f, 0.20f);
-                m_side = SIDE.RIGHT;
+                }
 
-                } else if (m_side == SIDE.LEFT) {
+                else if (m_side == SIDE.LEFT)
+                {
 
                     if (!isDead())
-                        {
+                    {
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
-                    } else {
+                        dodgeSound.Play();
+
+                    }
+
+                    else
+                    {
                         m_side = SIDE.LEFT;
                         rb.transform.DOMoveX(-3.4f, 0.20f);
                         //m_Animator.Play("Dead");
                     }
-
                 }
             }
         }
@@ -201,6 +216,7 @@ using TMPro;
         if (collision.gameObject.CompareTag("Road"))
         {
             isGrounded = true;
+
             if (fromAir)
             {
                 m_Animator.Play("Roll");
@@ -208,7 +224,9 @@ using TMPro;
                 rollingSound.Play();
                 fromAir = false;
                 
-            } else
+            }
+
+            else
             {
               //  m_Animator.Play("Running");
             }
@@ -218,6 +236,7 @@ using TMPro;
 
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            main_sound.Stop();
             m_Animator.SetBool("isRunning", false);
             Debug.Log("HIT OBSTACLE");
             m_Animator.Play("Death");
@@ -242,4 +261,3 @@ using TMPro;
     }
 
 }
-

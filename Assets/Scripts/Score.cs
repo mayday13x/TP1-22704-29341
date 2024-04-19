@@ -10,10 +10,7 @@ public class Score : MonoBehaviour
     float ScoreRate = 0.01f;
     public float Score_;
     public Player player;
-
     public TextMeshProUGUI ScoreText;
-
-
 
     void Update()
     {
@@ -23,7 +20,6 @@ public class Score : MonoBehaviour
             totalTime += Time.deltaTime;
             Score_ += totalTime * ScoreRate;
             ScoreText.text = Mathf.Round(Score_).ToString();
-
         }
 
         if (player.isDead())
@@ -32,6 +28,7 @@ public class Score : MonoBehaviour
         }
 
     }
+
     public float getScore()
     {
         return Score_;

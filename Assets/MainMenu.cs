@@ -12,11 +12,14 @@ public class MainMenu : MonoBehaviour
     public Player player;
     public Animator animator;
     public Score score;
+    public AudioSource main_sound;
+
     public void PlayGame()
     {
         // SceneManager.LoadScene(0);
         mainMenu.SetActive(false);
         player.Play();
+        main_sound.Play();
         Debug.Log("Playgame");
 
     }

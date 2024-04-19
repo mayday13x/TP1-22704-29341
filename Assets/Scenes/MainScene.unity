@@ -3415,6 +3415,7 @@ MonoBehaviour:
   roadSection:
   - {fileID: 5528285627819574221, guid: 6207f9573787c444283604382c623b5f, type: 3}
   - {fileID: 5528285627819574221, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
+  - {fileID: 5528285627819574221, guid: 384a56831e53b476aa8e15d2a81a073f, type: 3}
   zPos: 54
   secNum: 2
 --- !u!54 &1918717929

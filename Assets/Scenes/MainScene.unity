@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44673997, g: 0.49663246, b: 0.5748726, a: 1}
+  m_IndirectSpecularColor: {r: 0.4467355, g: 0.49662727, b: 0.5748676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3064,7 +3064,6 @@ MonoBehaviour:
   fromAir: 0
   isGrounded: 0
   isRolling: 0
-  isDead: 0
   jumpSound: {fileID: 62535471}
   deathSound: {fileID: 240970372}
   fallingSound: {fileID: 1552792931}
@@ -3147,6 +3146,10 @@ PrefabInstance:
       propertyPath: isActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5568472031897013445, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
+      propertyPath: m_Animator
+      value: 
+      objectReference: {fileID: 1918717921}
     - target: {fileID: 5568472031897013445, guid: bf4a9d971029dff4c82c8dcef36b6cac, type: 3}
       propertyPath: main_sound
       value: 

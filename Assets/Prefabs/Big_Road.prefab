@@ -137,6 +137,7 @@ MonoBehaviour:
   road: {fileID: 4672474107185607230}
   isActive: 1
   roadVelocity: -17
+  main_sound: {fileID: 0}
 --- !u!1 &5528285627819574221
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   road: {fileID: 5528285627819574221}
   isActive: 1
   roadVelocity: -17
+  main_sound: {fileID: 0}
 --- !u!1 &5571123836591706425
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +251,7 @@ MonoBehaviour:
   road: {fileID: 5571123836591706425}
   isActive: 1
   roadVelocity: -17
+  main_sound: {fileID: 0}
 --- !u!1 &5723458811997611513
 GameObject:
   m_ObjectHideFlags: 0

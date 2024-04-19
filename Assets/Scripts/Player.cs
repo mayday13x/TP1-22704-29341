@@ -19,7 +19,6 @@ using UnityEditor.Experimental.GraphView;
     public Animator m_Animator;
     public float swipeSpeed;
     public float GameSpeed = 17;
-    // public CapsuleCollider[] capsuleColliders;
 
     public float JumpPower = 7f;
     public float DownPower = 11f;
@@ -28,7 +27,6 @@ using UnityEditor.Experimental.GraphView;
 
     public bool isGrounded;
     public bool isRolling;
-    public bool isDead = false;
 
 
     public AudioSource jumpSound;
@@ -56,6 +54,11 @@ using UnityEditor.Experimental.GraphView;
     bool isRunning()
     {
         return m_Animator.GetBool("isRunning");
+    }
+
+    bool isDead()
+    {
+        return m_Animator.GetBool("isDead");
     }
 
     bool isRolling_()
@@ -118,12 +121,12 @@ using UnityEditor.Experimental.GraphView;
                         
                 } else if (m_side == SIDE.RIGHT) {
 
-                    if (!isDead){
+                    if (!isDead())
+                    {
 
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
-                    }
-                    if (isDead){
+                    } else { 
 
                         m_side = SIDE.RIGHT;
                         m_Animator.Play("Dead");
@@ -138,18 +141,18 @@ using UnityEditor.Experimental.GraphView;
 
                 if (m_side == SIDE.MID)
                 {
-                rb.AddForce(swipeSpeed, 0, 0, ForceMode.Impulse);
+
                 rb.transform.DOMoveX(3.2f, 0.20f);
                 m_side = SIDE.RIGHT;
 
                 } else if (m_side == SIDE.LEFT) {
 
-                    if (!isDead){
+                    if (!isDead())
+                        {
 
                         rb.transform.DOMoveX(0, 0.20f);
                         m_side = SIDE.MID;
-                    }
-                    if (isDead) {
+                    } else {
                         m_side = SIDE.LEFT;
                         m_Animator.Play("Dead");
                     }
@@ -199,8 +202,8 @@ using UnityEditor.Experimental.GraphView;
         {
             m_Animator.SetBool("isRunning", false);
             Debug.Log("HIT OBSTACLE");
-            isDead = true;
             m_Animator.Play("Death");
+            m_Animator.SetBool("isDead", false);
             deathSound.Play();
             fallingSound.Play();
         }

@@ -32,7 +32,7 @@ public class MoveRoad : MonoBehaviour
         }
         
 
-        if (isActive && m_Animator.GetBool("isRunning"))
+     /*   if (isActive && m_Animator.GetBool("isRunning"))
         {
             
 
@@ -43,7 +43,7 @@ public class MoveRoad : MonoBehaviour
                {
                         Destroy(road);
                }
-        }
+        }*/
        
 
     }

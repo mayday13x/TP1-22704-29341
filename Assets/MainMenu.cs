@@ -15,10 +15,14 @@ public class MainMenu : MonoBehaviour
 
     }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void QuitGame()
     {
-        Application.Quit();
+         Application.Quit();
     }
 
 }

@@ -21,9 +21,9 @@ public class CameraController : MonoBehaviour
 
         } else
         {
-                targetPosition.x = playerTransform.position.x + offset.x;
+               // targetPosition.x = playerTransform.position.x + offset.x;
                 targetPosition.y = playerTransform.position.y + offset.y;
-                targetPosition.z = playerTransform.position.z + offset.z;
+               // targetPosition.z = playerTransform.position.z + offset.z;
         }
 
 

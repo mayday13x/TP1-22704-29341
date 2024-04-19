@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.UI;
 using TMPro;
 
 [System.Serializable]
@@ -52,6 +48,8 @@ using TMPro;
     public TextMeshProUGUI ScoreTextInGame;
 
     public Score score;
+
+    public GameObject ScoreInGame;
 
 
 
@@ -225,6 +223,7 @@ using TMPro;
             deathSound.Play();
             fallingSound.Play();
 
+            ScoreInGame.SetActive(false);
             ScoreValue.text = "SCORE : " + Mathf.RoundToInt(score.getScore()).ToString();
         }
 

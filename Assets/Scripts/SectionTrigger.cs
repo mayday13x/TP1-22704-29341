@@ -16,7 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             secNum = Random.Range(0, 2);
            // Instantiate(roadSection, roadSection[0].transform.position + new Vector3(0,0,54), Quaternion.identity);
-            Instantiate(roadSection[0], new Vector3(0,0,zPos), Quaternion.identity);
+            Instantiate(roadSection[secNum], new Vector3(0,0,zPos), Quaternion.identity);
             zPos += 156;
         }
 

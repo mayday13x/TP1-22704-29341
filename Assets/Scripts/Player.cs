@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 
@@ -17,8 +19,10 @@ using UnityEditor.Experimental.GraphView;
     private bool swipeLeft, swipeRight, swipeUp, swipeDown;
     public Rigidbody rb;
     public Animator m_Animator;
+    public GameObject gameOver;
     public float swipeSpeed;
     public float GameSpeed = 17;
+
 
     public float JumpPower = 7f;
     public float DownPower = 11f;
@@ -43,6 +47,13 @@ using UnityEditor.Experimental.GraphView;
 
     public AudioSource main_sound;
 
+    public TextMeshProUGUI  ScoreValue;
+
+    public TextMeshProUGUI ScoreTextInGame;
+
+    public Score score;
+
+
 
     void Start()
     {
@@ -51,13 +62,10 @@ using UnityEditor.Experimental.GraphView;
 
     }
 
-    void Play()
+   public void Play()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))    // TAB -> Start on the menu
-        {
-            m_Animator.SetBool("isRunning", true);
 
-        }
+            m_Animator.SetBool("isRunning", true);
     }
 
     bool isRunning()
@@ -65,7 +73,7 @@ using UnityEditor.Experimental.GraphView;
         return m_Animator.GetBool("isRunning");
     }
 
-    bool isDead()
+    public bool isDead()
     {
         return m_Animator.GetBool("isDead");
     }
@@ -78,7 +86,6 @@ using UnityEditor.Experimental.GraphView;
 
     void Update() {
 
-        Play();
         ChangeCollider();
 
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
@@ -214,8 +221,11 @@ using UnityEditor.Experimental.GraphView;
             Debug.Log("HIT OBSTACLE");
             m_Animator.Play("Death");
            // m_Animator.SetBool("isDead", true);
+            gameOver.SetActive(true);
             deathSound.Play();
             fallingSound.Play();
+
+            ScoreValue.text = "SCORE : " + Mathf.RoundToInt(score.getScore()).ToString();
         }
 
     }

@@ -28,6 +28,11 @@ public class CameraController : MonoBehaviour
                // targetPosition.z = playerTransform.position.z + offset.z;
         }
 
+        if (player.transform.position.y < -5.5f)
+        {
+            targetPosition.y = -5.5f;
+        }
+
         transform.DOMove(targetPosition, 0.30f);
     }
 

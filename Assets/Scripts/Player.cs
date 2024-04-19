@@ -87,6 +87,11 @@ using TMPro;
 
         ChangeCollider();
 
+        if (!isGrounded)
+        {
+            m_Animator.Play("Falling");
+        }
+
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);
         swipeUp = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space);
@@ -234,7 +239,7 @@ using TMPro;
         }
 
 
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") || rb.transform.position.y < -5.5f)
         {
             main_sound.Stop();
             m_Animator.SetBool("isRunning", false);
@@ -259,5 +264,6 @@ using TMPro;
         }
 
     }
+
 
 }

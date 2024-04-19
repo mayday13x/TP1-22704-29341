@@ -1,4 +1,4 @@
-
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
@@ -27,6 +27,7 @@ using TMPro;
 
     public bool isGrounded;
     public bool isRolling;
+    public bool isRetry;
 
 
     public AudioSource jumpSound;
@@ -51,12 +52,14 @@ using TMPro;
 
     public GameObject ScoreInGame;
 
+    public MainMenu mainMenu;
+
 
 
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-        m_Animator.SetBool("isRunning",false);
+       // m_Animator.SetBool("isRunning",false);
 
     }
 
@@ -238,7 +241,5 @@ using TMPro;
 
     }
 
-
 }
-
 

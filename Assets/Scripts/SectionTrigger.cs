@@ -14,7 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Trigger"))
         {
-            secNum = Random.Range(0, 2);
+            secNum = Random.Range(0, 3);
            // Instantiate(roadSection, roadSection[0].transform.position + new Vector3(0,0,54), Quaternion.identity);
             Instantiate(roadSection[secNum], new Vector3(0,0,zPos), Quaternion.identity);
             zPos += 156;

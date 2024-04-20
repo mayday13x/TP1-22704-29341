@@ -12,6 +12,7 @@ public class Score : MonoBehaviour
     public Player player;
     public TextMeshProUGUI ScoreText;
 
+
     void Update()
     {
 
@@ -32,6 +33,11 @@ public class Score : MonoBehaviour
     public float getScore()
     {
         return Score_;
+    }
+
+    public void setScore(float score)
+    {
+        Score_ = score;
     }
 
 }

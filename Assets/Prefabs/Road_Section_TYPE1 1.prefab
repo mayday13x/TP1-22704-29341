@@ -51,7 +51,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5528285627819574221}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa5416a21babfc4fb3e3e3170fd9ced, type: 3}
   m_Name: 
@@ -59,7 +59,6 @@ MonoBehaviour:
   road: {fileID: 5528285627819574221}
   isActive: 1
   roadVelocity: -17
-  main_sound: {fileID: 0}
 --- !u!1 &5723458811997611513
 GameObject:
   m_ObjectHideFlags: 0

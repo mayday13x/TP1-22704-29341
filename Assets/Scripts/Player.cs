@@ -16,7 +16,9 @@ using TMPro;
     public Animator m_Animator;
     public GameObject gameOver;
     public float swipeSpeed;
-    public float GameSpeed = 17;
+    public float GameSpeed;
+    private float MaxGameSpeed = 22;
+    private float ScoreTresHold = 400;
 
 
     public float JumpPower = 7f;
@@ -63,8 +65,7 @@ using TMPro;
 
    public void Play()
     {
-
-            m_Animator.SetBool("isRunning", true);
+       m_Animator.SetBool("isRunning", true);
     }
 
     bool isRunning()
@@ -84,6 +85,15 @@ using TMPro;
     }
 
     void Update() {
+       
+        /*
+        float score_help = score.getScore();
+
+        if (score_help >= 10 )
+        {
+            GameSpeed++;
+            score_help = 0;
+        }*/
 
         ChangeCollider();
 

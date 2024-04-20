@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
         // SceneManager.LoadScene(0);
         mainMenu.SetActive(false);
         player.Play();
+        main_sound.loop = true;
         main_sound.Play();
         Debug.Log("Playgame");
 
@@ -33,7 +34,7 @@ public class MainMenu : MonoBehaviour
     {
         // player.transform.position = Vector3.zero;
         score.Score_ = 0;
-        player.transform.position = new Vector3(0,2f,0);
+        player.transform.position = new Vector3(0,2f, -90.7f);
         player.GetComponent<Animator>().Play("Running");
         GameOverMenu.SetActive(false);
        // Score.SetActive(true);

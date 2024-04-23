@@ -2,6 +2,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using System.Collections;
 
 [System.Serializable]
 
@@ -84,23 +85,23 @@ using TMPro;
         return isRolling;
     }
 
+    float timeElapsed;
     void Update() {
-       
-        /*
-        float score_help = score.getScore();
 
-        if (score_help >= 10 )
+        timeElapsed += Time.deltaTime;
+        if (timeElapsed >= 30.0f)
         {
-            GameSpeed++;
-            score_help = 0;
-        }*/
+            if (GameSpeed <= 22)
+            {
+                GameSpeed += 1.0f;
+                print(GameSpeed.ToString()); // Imprime o valor da variável no console (opcional)
+                timeElapsed = 0.0f;
+            }
+
+        }
 
         ChangeCollider();
 
-        if (!isGrounded)
-        {
-            m_Animator.Play("Falling");
-        }
 
         swipeLeft = Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow);
         swipeRight = Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow);

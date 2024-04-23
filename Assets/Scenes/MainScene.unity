@@ -3682,6 +3682,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3115982615038451000, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323463038183265624, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335803550546830040, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5528285627819574221, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
       propertyPath: m_Name
       value: Big_Road
@@ -5882,6 +5894,7 @@ MonoBehaviour:
   roadSection:
   - {fileID: 5528285627819574221, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
   - {fileID: 5528285627819574221, guid: dc4df247afc99734ebd14f86440b9548, type: 3}
+  - {fileID: 5528285627819574221, guid: 6207f9573787c444283604382c623b5f, type: 3}
   zPos: 54
   secNum: 2
 --- !u!54 &1918717929
@@ -5892,7 +5905,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918717915}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 9
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5967,8 +5980,6 @@ MonoBehaviour:
   Score_: 0
   player: {fileID: 1918717930}
   ScoreText: {fileID: 593329877}
-  scoreIncreaseInterval: 5
-  scoreIncreaseAmount: 1
 --- !u!1001 &1945113129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6127,7 +6138,7 @@ Transform:
   m_GameObject: {fileID: 1991190377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1088}
+  m_LocalPosition: {x: 0, y: 0, z: -419}
   m_LocalScale: {x: 1.8627, y: 1.8627, z: 1.8627}
   m_ConstrainProportionsScale: 0
   m_Children: []

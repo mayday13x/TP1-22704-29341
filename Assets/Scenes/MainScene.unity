@@ -3702,7 +3702,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 23.6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects:
     - {fileID: 9078846987996356289, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
     - {fileID: 6013167751690553713, guid: 263401d640bca3e4fa9536f331f7833d, type: 3}
@@ -6122,9 +6123,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1991190378}
   - component: {fileID: 1991190379}
+  - component: {fileID: 1991190380}
   m_Layer: 0
   m_Name: Destroyer
-  m_TagString: Untagged
+  m_TagString: Destroy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6138,7 +6140,7 @@ Transform:
   m_GameObject: {fileID: 1991190377}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -419}
+  m_LocalPosition: {x: 0, y: 0, z: -502.2}
   m_LocalScale: {x: 1.8627, y: 1.8627, z: 1.8627}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6165,6 +6167,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 105.085266, y: 47.528263, z: 3.930884}
   m_Center: {x: -4.205285, y: 23.264132, z: -42.180496}
+--- !u!114 &1991190380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991190377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ae8e2f6f16894419bfef043ea1c6a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2055981848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 07f7693a22c302246b83507415e1c01f, type: 3}

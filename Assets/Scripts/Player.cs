@@ -89,7 +89,7 @@ using System.Collections;
     void Update() {
 
         timeElapsed += Time.deltaTime;
-        if (timeElapsed >= 30.0f)
+        if (timeElapsed >= 20.0f)
         {
             if (GameSpeed <= 22)
             {
